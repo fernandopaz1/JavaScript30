@@ -59,19 +59,36 @@
 
 <script>
   
-  window.addEventListener('keydown',(e)=>{
-    //selecciona los audios con el mismo data-key que el evento disparado
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    
-    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    //playsound se ejecuta cuando se dispara el evento global keydown
+    function playsound(e){
+      //selecciona los audios con el mismo data-key que el evento disparado
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
 
-    if(!audio) return;
+      if(!audio) return;
 
-    audio.currentTime = 0;  //Cada vez que ocurre el evento emplieza de cero
-    audio.play(); 
+      audio.currentTime = 0;  //Cada vez que ocurre el evento emplieza de cero
+      audio.play(); 
 
-    console.log(key);    
-  });
+      key.classList.add("playing");  //Le agrego una clase que tiene otro estilo
+
+  };
+
+
+  function removeTransition(e){
+    if(e.propertyName != 'transform') return;   //solo removemos la transision si finaliza
+    //this es el elemento que disparo el evento
+    this.classList.remove("playing");   //Le quito la clase playin asi que vuelve a la normalidad
+  }
+
+  window.addEventListener('keydown', playsound);
+
+  const keys=document.querySelectorAll(".key");
+  keys.forEach(key => key.addEventListener('transitionend',  removeTransition)); 
+  //El evento transitionend ocurre cuando termina 
+  //una transicion  ==> dispara la funcion removeTransition
+
 </script>
 
 
