@@ -45,12 +45,17 @@
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
     //map Devuelve la misma cantidad de elementos que el arreglo original
-    const  fullNames = inventors.map(inventor => inventor.first+" "+ inventor.last);
+    const  fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
     //Para cada elemento devuelve el nombre completo ==> mapea de objetos a nombres completos
     console.table(fullNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    //a la funcion le paso dos elementos y devuelve 1 o -1 dependiende de como quiero ordenarlos
+    //Si devuelve 1 es porque el inventor1 es menor al inventor2 y sabe como ordenarlos
+    //Si devuelve -1 es el caso contrario y los ordena
+    const sortByBirth = inventors.sort((inv1,inv2)=> inv1.year<inv2.year ? 1:-1)  
+    console.table(sortByBirth);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
