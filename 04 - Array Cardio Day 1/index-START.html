@@ -52,16 +52,26 @@
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
     //a la funcion le paso dos elementos y devuelve 1 o -1 dependiende de como quiero ordenarlos
-    //Si devuelve 1 es porque el inventor1 es menor al inventor2 y sabe como ordenarlos
+    //Si devuelve 1 es porque el inventor1 es mayor al inventor2 y sabe como ordenarlos
     //Si devuelve -1 es el caso contrario y los ordena
     const sortByBirth = inventors.sort((inv1,inv2)=> inv1.year<inv2.year ? 1:-1)  
+    console.log("Sorted by birth");
     console.table(sortByBirth);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
 
-    // 5. Sort the inventors by years lived
+    const totalYears = inventors.reduce((total,inventor) => { 
+      return total+(inventor.passed - inventor.year)},0);
+    //reduce se ejecuta sobre todos los elementos del array y devuelve un unico valor 
+    //El primer argumeto es la funcion reductora
+    //el segundo es el valor inicial valor que devolvemos
+    console.log(`Total years lived ${totalYears}`);
 
+    // 5. Sort the inventors by years lived
+    const sortOldest = inventors.sort((inv1,inv2)=> { 
+      return ((inv1.passed-inv1.year) < (inv2.passed - inv2.year)) ? 1:-1});  
+    console.table(sortOldest);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
