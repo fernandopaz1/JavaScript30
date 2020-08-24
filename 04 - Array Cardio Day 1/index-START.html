@@ -92,14 +92,12 @@
     // Sort the people alphabetically by last name
 
       const sortedPople = people.sort((p1,p2) =>{
-        let i=0, j=0;
-        while(p1.charAt(i)!=","){
-          i++
-        }
-        while(p2.charAt(j)!=","){
-          j++;
-        }
-        return (p1.charAt(i+2)>p2.charAt(j+2)) ? 1 : -1;
+        //split separa un string en un array en la parte que le pasas como parametro
+        //El segundo elemento del array es el apellid
+        //la comparacion de strings se hace directamente con el operador > o <
+        let p1Last=p1.split(', ')[1]
+        let p2Last=p2.split(', ')[1]
+        return (p1Last>p2Last) ? 1 : -1;
       })
 
       console.table(sortedPople);
