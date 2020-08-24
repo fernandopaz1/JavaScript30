@@ -104,9 +104,17 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    //La idea de este es que tenemos un monton de repetidos y queremos
+    //reducirlo a un objeto sin repetidos
 
-    const sumOfData = data.reduce((total,instance) => {return total+instance;},"");
-    console.log(`The sum of all data is ${sumOfData}`);
+    const transportation = data.reduce((obj,item) => {
+      if(!obj[item]) obj[item]=0;  //Si no existe dentro del objeto lo agrego
+
+      obj[item]++;     //si existe lo incremento;
+      
+      return obj;
+    },{});
+    console.table(transportation);
 
 
   </script>
