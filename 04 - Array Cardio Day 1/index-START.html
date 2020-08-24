@@ -72,16 +72,44 @@
     const sortOldest = inventors.sort((inv1,inv2)=> { 
       return ((inv1.passed-inv1.year) < (inv2.passed - inv2.year)) ? 1:-1});  
     console.table(sortOldest);
+
+
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    //Esta parte se hace con el navegador abierto en la pagina de wikipedia
+    //Para saber a que le debemos hacer querySelector debemos usar las herramientas
+    //de desarrollador
 
-
-    // 7. sort Exercise
+/*
+    const category = document.querySelector('.mw-category');
+    const links = Array.from(category.querySelectorAll('a'));//Los nombres de ciudades son una lista de links
+    const citiesWithDe = links
+                        .map(link => link.textContent)
+                        .filter(city => city.toLowerCase().includes("de"))
+    console.table(citiesWithDe);
+*/
+    // 7. sort Exerciser 
     // Sort the people alphabetically by last name
 
+      const sortedPople = people.sort((p1,p2) =>{
+        let i=0, j=0;
+        while(p1.charAt(i)!=","){
+          i++
+        }
+        while(p2.charAt(j)!=","){
+          j++;
+        }
+        return (p1.charAt(i+2)>p2.charAt(j+2)) ? 1 : -1;
+      })
+
+      console.table(sortedPople);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const sumOfData = data.reduce((total,instance) => {return total+instance;},"");
+    console.log(`The sum of all data is ${sumOfData}`);
+
 
   </script>
 </body>
